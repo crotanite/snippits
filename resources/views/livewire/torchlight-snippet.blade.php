@@ -25,19 +25,16 @@
         @if($preview)
             <pre><x-torchlight-code language="{{ $language }}" name="preview" theme="{{ $theme }}">{!! $snippet !!}</x-torchlight-code></pre>
         @else
-            <x-form.textarea name="snippet" rows="5" wire:model="snippet" />
+            <pre><code class="language-html">{!! $snippet !!}<div></code></pre>
+            <x-form.textarea id="demotext" name="snippet" rows="5" wire:model="snippet" />
         @endif
-        <div class="mt-1 text-right">
-            <x-button wire:click.prevent="togglePreview" wire:loading.attr="disabled" wire:target="togglePreview">
-                <span wire:loading.remove wire:target="togglePreview">
-                    @if($preview)
-                        {{ __('Edit') }}
-                    @else
-                        {{ __('Preview') }}
-                    @endif
-                </span>
-                <span wire:loading wire:target="togglePreview">loading...</span>
-            </x-button>
-        </div>
     </div>
 </x-form.fieldset>
+
+<script type="text/javascript">
+    var editor = CodeMirror.fromTextArea(document.getElementById("demotext"), {
+        lineNumbers: true,
+        mode: "javascript",
+        theme: "nord"
+    });
+</script>

@@ -2,7 +2,9 @@
 
 @tailwind components;
 
-@tailwind utilities;
+.CodeMirror {
+    @apply h-auto p-4;
+}
 
 input[type='checkbox'] {
 	@apply dark:border-gray-700;
@@ -14,36 +16,4 @@ input[type='checkbox'] {
 	}
 }
 
-/*
- Margin and rounding are personal preferences,
- overflow-x-auto is recommended.
-*/
-pre {
-    @apply rounded overflow-x-auto w-full;
-}
-
-/*
- Add some vertical padding and expand the width
- to fill its container. The horizontal padding
- comes at the line level so that background
- colors extend edge to edge.
-*/
-pre code.torchlight {
-    @apply block py-4 min-w-max;
-}
-
-/*
- Horizontal line padding.
-*/
-pre code.torchlight .line {
-    @apply px-4;
-}
-
-/*
- Push the code away from the line numbers and
- summary caret indicators.
-*/
-pre code.torchlight .line-number,
-pre code.torchlight .summary-caret {
-    @apply mr-4;
-}
+@tailwind utilities;

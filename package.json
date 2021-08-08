@@ -17,6 +17,8 @@
         "tailwindcss": "^2.0.2"
     },
     "dependencies": {
-        "alpinejs": "^3.2.3"
+        "alpinejs": "^3.2.3",
+        "highlight.js": "^11.2.0",
+        "masonry-layout": "^4.2.2"
     }
 }

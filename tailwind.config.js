@@ -14,6 +14,10 @@ module.exports = {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
+            width: {
+                gutter: '2%',
+                masonry: '49%',
+            }
         },
     },
 };

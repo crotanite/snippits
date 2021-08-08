@@ -6,7 +6,11 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>{{ config('app.name') }}</title>
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.2/codemirror.min.css" integrity="sha512-xIf9AdJauwKIVtrVRZ0i4nHP61Ogx9fSRAkCLecmE2dL/U8ioWpDvFCAy4dcfecN72HHB9+7FfQj3aiO68aaaw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.2/theme/nord.min.css" integrity="sha512-sPc4jmw78pt6HyMiyrEt3QgURcNRk091l3dZ9M309x4wM2QwnCI7bUtsLnnWXqwBMECE5YZTqV6qCDwmC2FMVA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.2/codemirror.min.js" integrity="sha512-6Q5cHfb86ZJ3qWx47Pw7P5CN1/pXcBMmz3G0bXLIQ67wOtRF7brCaK5QQLPz2CWLBqjWRNH+/bV5MwwWxFGxww==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
         @livewireStyles
     </head>
     <body class="antialiased bg-gray-200 flex flex-col min-h-screen text-gray-900">
@@ -79,6 +83,21 @@
                         this.selectionStart =
                         this.selectionEnd = start + 1;
                     }
+                });
+            }
+
+            const snippets = document.getElementsByClassName('snippet')
+            for (let i = 0; i < snippets.length; i++) {
+                CodeMirror.fromTextArea(snippets[i], {
+                    theme: "nord",
+                    highlightMatches: true,
+                    indentWithTabs: true,
+                    lineNumbers: false,
+                    matchBrackets: true,
+                    readOnly: "nocursor",
+                    styleActiveLine: true,
+                    styleActiveSelected: true,
+                    tabSize: 4,
                 });
             }
         </script>

@@ -1,11 +1,11 @@
-<div {{ $attributes->merge(['class' => 'col-span-2 overflow-hidden rounded md:col-span-1']) }}>
+<div {{ $attributes->merge(['class' => 'grid-item mb-8 w-full md:w-masonry']) }}>
     @if($slot->toHtml() !== '')
         <div class="bg-white flex items-center p-4 space-x-2 text-sm">
             {{ $slot }}
         </div>
     @endif
     <!-- snippet -->
-    <pre class="rounded-none"><x-torchlight-code language="{{ $snippet->language }}" theme="{{ $snippet->theme }}">{!! $snippet->snippet !!}</x-torchlight-code></pre>
+    <textarea class="snippet">{!! $snippet->snippet !!}</textarea>
 
     <!-- description -->
     <div class="bg-white flex items-center p-4 space-x-2 text-sm">
