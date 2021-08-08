@@ -1,4 +1,4 @@
-<div {{ $attributes->merge(['class' => 'grid-item mb-8 w-full md:w-masonry']) }}>
+<div {{ $attributes->merge(['class' => 'grid-item mb-8 overflow-hidden rounded w-full md:w-masonry']) }}>
     @if($slot->toHtml() !== '')
         <div class="bg-white flex items-center p-4 space-x-2 text-sm">
             {{ $slot }}
