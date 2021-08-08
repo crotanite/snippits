@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         @livewireStyles
     </head>
-    <body class="antialiased bg-gray-200 text-gray-900">
+    <body class="antialiased bg-gray-200 flex flex-col min-h-screen text-gray-900">
         <!-- topbar -->
         <div class="bg-white h-16 px-8">
             <x-container class="flex h-full space-x-4">
@@ -45,12 +45,18 @@
             </x-container>
         </div>
 
-        <main class="p-8">
+        <main class="flex-grow p-8">
             <x-container>
                 <x-sessions />
                 {{ $slot }}
             </x-container>
         </main>
+
+        <footer class="bg-white py-4 text-center text-sm">
+            <strong>{{ __('Created by') }} <x-link href="https://paigejones.me/" target="_blank">paigejones.me</x-link></strong>
+            <br>
+            {{ __('Syntax Highlighting by') }} <x-link href="https://torchlight.dev/" target="_blank">Torchlight</x-link>
+        </footer>
 
         @livewireScripts
 
