@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Invite;
 use App\Http\Requests\LoginRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LogoutRequest;
@@ -29,6 +30,8 @@ class AuthController extends Controller
      */
     public function store(RegisterRequest $request): \Illuminate\Http\RedirectResponse
     {
+        Invite::where('code', '=', $request->input('invite'))->firstOrFail()->delete();
+
         User::create([
             'name' => $request->input('name'),
             'url' => $request->input('url'),

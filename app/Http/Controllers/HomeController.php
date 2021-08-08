@@ -8,7 +8,7 @@ class HomeController extends Controller
 {
     public function __invoke()
     {
-        $snippets = Snippet::with(['user'])->paginate(20);
+        $snippets = Snippet::with(['lang', 'user'])->paginate(20);
 
         return view('home', compact('snippets'));
     }

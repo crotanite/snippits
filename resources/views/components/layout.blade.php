@@ -18,7 +18,7 @@
                     {{ __('Snippets') }}
                 </x-nav-link>
                 @auth
-                    <x-nav-link :href="route('create')" :active="request()->routeIs('create')">
+                    <x-nav-link :href="route('snippets.create')" :active="request()->routeIs('snippets.create')">
                         {{ __('Create Snippet') }}
                     </x-nav-link>
                 @endauth
@@ -32,8 +32,11 @@
                         {{ __('Login') }}
                     </x-nav-link>
                 @else
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                    <x-nav-link :href="route('snippets.index')" :active="request()->routeIs('snippets.index')">
+                        {{ __('My Snippets') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('invites.index')" :active="request()->routeIs('invites.index')">
+                        {{ __('Invites') }}
                     </x-nav-link>
                     <x-nav-link :href="route('logout')" :active="request()->routeIs('logout')">
                         {{ __('Logout') }}

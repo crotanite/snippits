@@ -1,13 +1,27 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use App\Models\Snippet;
 use App\Models\Language;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateSnippetRequest;
+use App\Http\Requests\DeleteSnippetRequest;
 
-class CreateController extends Controller
+class SnippetController extends Controller
 {
+    /**
+     * Show the index view.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function index(): \Illuminate\View\View
+    {
+        $snippets = auth()->user()->snippets;
+
+        return view('snippets.index', compact('snippets'));
+    }
+
     /**
      * Show the create view.
      *
@@ -16,8 +30,9 @@ class CreateController extends Controller
     public function create(): \Illuminate\View\View
     {
         $languages = Language::all();
+        $tags = Tag::all();
 
-        return view('create', compact('languages'));
+        return view('snippets.create', compact('languages', 'tags'));
     }
 
     /**
@@ -39,6 +54,19 @@ class CreateController extends Controller
             'anonymous' => $request->input('anonymous') === 'on' ? true : false,
         ]);
 
-        return redirect('/');
+        return redirect()->route('snippets.index');
+    }
+
+    /**
+     * Handle deleting a snippet.
+     *
+     * @param int $snippet_id
+     * @param \App\Http\Requests\DeleteSnippetRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy(int $snippet_id, DeleteSnippetRequest $request): \Illuminate\Http\RedirectResponse
+    {
+        auth()->user()->snippets()->where('id', '=', $snippet_id)->firstOrFail()->delete();
+        return redirect()->route('snippets.index');
     }
 }

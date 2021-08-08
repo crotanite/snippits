@@ -21,7 +21,14 @@ Route::get('/login', ['as' => 'login', 'uses' => 'AuthController@edit']);
 Route::post('/login', ['as' => 'login', 'uses' => 'AuthController@update']);
 Route::get('/logout', ['as' => 'logout', 'uses' => 'AuthController@destroy']);
 
-Route::get('/create', ['as' => 'create', 'middleware' => ['auth'], 'uses' => 'CreateController@create']);
-Route::post('/create', ['as' => 'create', 'middleware' => ['auth'], 'uses' => 'CreateController@store']);
+Route::group(['as' => 'snippets.', 'middleware' => ['auth'], 'prefix' => 'snippets'], function() {
+    Route::get('/', ['as' => 'index', 'uses' => 'SnippetController@index']);
+    Route::get('/create', ['as' => 'create', 'uses' => 'SnippetController@create']);
+    Route::post('/create', ['as' => 'create', 'uses' => 'SnippetController@store']);
+    Route::delete('/delete/{snippet_id}', ['as' => 'destroy', 'uses' => 'SnippetController@destroy']);
+});
 
-Route::get('/dashboard', ['as' => 'dashboard', 'middleware' => ['auth'], 'uses' => 'DashboardController']);
+Route::group(['as' => 'invites.', 'prefix' => 'invites'], function() {
+    Route::get('/', ['as' => 'index', 'uses' => 'InviteController@index']);
+    Route::get('/create', ['as' => 'create', 'uses' => 'InviteController@store']);
+});

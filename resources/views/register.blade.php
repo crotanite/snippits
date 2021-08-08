@@ -23,6 +23,11 @@
                     <x-form.label for="password_confirmation">{{ __('Confirm Password') }} *</x-form.label>
                     <x-form.input name="password_confirmation" type="password" />
                 </div>
+                <!-- invite -->
+                <div>
+                    <x-form.label for="invite">{{ __('Invite Code') }} *</x-form.label>
+                    <x-form.input name="invite" type="text" />
+                </div>
                 <!-- url -->
                 <div>
                     <x-form.label for="url">{{ __('URL') }}</x-form.label>

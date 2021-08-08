@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Ramsey\Uuid\Uuid;
+use App\Models\Invite;
 use App\Models\Snippet;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -62,6 +63,14 @@ class User extends Authenticatable
            $model->id = Uuid::uuid4()->toString();
        });
    }
+
+   /**
+    * Fetch the invites this user has created.
+    */
+    public function invites()
+    {
+        return $this->hasMany(Invite::class, 'user_id', 'id');
+    }
 
    /**
     * Fetch the snippets this user has created.

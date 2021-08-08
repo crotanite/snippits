@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Language extends Model
+class Invite extends Model
 {
     use HasFactory;
 
@@ -19,7 +19,7 @@ class Language extends Model
      * The primary key for the model.
      * @var string
      */
-    public $primaryKey = 'language';
+    public $primaryKey = 'code';
 
     /**
      * Indicates if the model should be timestamped.

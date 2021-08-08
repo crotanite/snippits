@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RegisterRequest extends FormRequest
+class DeleteSnippetRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class RegisterRequest extends FormRequest
      */
     public function authorize()
     {
-        return !auth()->check();
+        return auth()->check();
     }
 
     /**
@@ -24,11 +24,7 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => ['required', 'email', 'unique:users,email'],
-            'name' => ['required', 'string'],
-            'password' => ['required', 'min:8', 'confirmed'],
-            'invite' => ['required', 'exists:invites,code', 'size:15'],
-            'url' => ['url', 'nullable'],
+            //
         ];
     }
 }

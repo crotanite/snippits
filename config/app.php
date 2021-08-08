@@ -2,6 +2,13 @@
 
 return [
 
+    'initial_user' => [
+        'email' => env('INITIAL_USER_EMAIL'),
+        'name' => env('INITIAL_USER_NAME'),
+        'password' => env('INITIAL_USER_PASSWORD'),
+        'url' => env('INITIAL_USER_URL'),
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

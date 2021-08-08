@@ -23,8 +23,8 @@ class TagsSeeder extends Seeder
         foreach($resources as $resource) {
             Tag::create([
                 'tag' => $resource['tag'],
-                'bg_color' => $resource['bg_color'] ?? null,
-                'text_color' => $resource['text_color'] ?? null,
+                'bg_color' => $resource['bg_color'],
+                'text_color' => $resource['text_color'],
             ]);
         }
     }

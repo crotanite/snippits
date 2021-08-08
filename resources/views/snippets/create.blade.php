@@ -1,6 +1,6 @@
 <x-layout>
     <x-card>
-        <form method="POST" action="{{ route('create') }}">
+        <form method="POST" action="{{ route('snippets.create') }}">
             @csrf
             <x-form.fieldset>
                 <livewire:torchlight-snippet />
