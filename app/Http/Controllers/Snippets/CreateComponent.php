@@ -1,12 +1,12 @@
 <?php
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Snippets;
 
 use App\Models\Theme;
 use App\Models\Snippet;
 use Livewire\Component;
 use App\Models\Language;
 
-class CreateSnippetComponent extends Component
+class CreateComponent extends Component
 {
 	/**
 	 * The available languages.

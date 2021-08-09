@@ -1,7 +1,7 @@
 <form method="POST" action="{{ route('snippets.create') }}">
     @csrf
 
-    <x-snippet.build :readonly="false" :snippet="$snippet">
+    <x-snippet.item :readonly="false" :snippet="$snippet">
         <x-slot name="header">
             <!-- language -->
             <div>
@@ -38,5 +38,5 @@
             <x-gap />
             <x-button theme="success">{{ __('Create') }}</x-button>
         </x-slot>
-    </x-snippet.build>
+    </x-snippet.item>
 </form>

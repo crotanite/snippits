@@ -5,7 +5,7 @@ namespace App\View\Components\Snippet;
 use App\Models\Snippet;
 use Illuminate\View\Component;
 
-class Build extends Component
+class Item extends Component
 {
     /**
      * The readonly state of the snippet.
@@ -39,6 +39,6 @@ class Build extends Component
      */
     public function render()
     {
-        return view('components.snippet.build');
+        return view('components.snippet.item');
     }
 }
