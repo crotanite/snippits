@@ -22,7 +22,7 @@ class Snippet extends Model
 
     public function lang()
     {
-        return $this->belongsTo(Language::class, 'language', 'language');
+        return $this->belongsTo(Language::class, 'language', 'key');
     }
 
     public function getTaggingAttribute()

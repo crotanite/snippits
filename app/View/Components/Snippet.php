@@ -7,15 +7,27 @@ use App\Models\Snippet as SnippetModel;
 
 class Snippet extends Component
 {
-    public SnippetModel $snippet;
+    /**
+     * The readonly state of the textarea.
+     * @var bool|string
+     */
+    public bool|string $readonly;
+
+    /**
+     * The model to use.
+     * @var \App\Models\Snippet|null
+     */
+    public ?SnippetModel $snippet;
 
     /**
      * Create a new component instance.
      *
+     * @param \App\Models\Snippet|null $snippet
      * @return void
      */
-    public function __construct(SnippetModel $snippet)
+    public function __construct(bool|string $readonly = 'nocursor', ?SnippetModel $snippet = null)
     {
+        $this->readonly = $readonly;
         $this->snippet = $snippet;
     }
 

@@ -6,7 +6,7 @@
     @else
         <x-snippets>
             @foreach($snippets as $snippet)
-                <x-snippet :snippet="$snippet">
+                <x-snippet class="grid-item md:w-masonry" :snippet="$snippet">
                     <!-- gap -->
                     <div class="flex-grow"></div>
                     <!-- options -->

@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tag;
+use App\Models\Theme;
 use App\Models\Snippet;
 use App\Models\Language;
 use App\Http\Controllers\Controller;

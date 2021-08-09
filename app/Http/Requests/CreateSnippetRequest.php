@@ -24,7 +24,9 @@ class CreateSnippetRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'snippet' => ['required'],
+            'theme' => ['required', 'exists:themes,key'],
+            'language' => ['required', 'exists:languages,key'],
         ];
     }
 }
