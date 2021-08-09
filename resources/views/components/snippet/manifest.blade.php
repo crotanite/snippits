@@ -32,7 +32,7 @@
             <div class="gutter-sizer md:w-gutter"></div>
 
             @foreach($sortedSnippets as $snippet)
-                <x-snippet.item class="grid-item md:w-masonry" :snippet="$snippet" />
+                <x-snippet.item class="grid-item md:w-masonry" :readonly="false" :snippet="$snippet" />
             @endforeach
         </div>
     @endif
