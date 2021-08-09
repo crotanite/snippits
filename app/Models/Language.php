@@ -19,7 +19,7 @@ class Language extends Model
      * The primary key for the model.
      * @var string
      */
-    public $primaryKey = 'key';
+    public $primaryKey = 'code';
 
     /**
      * Indicates if the model should be timestamped.

@@ -14,11 +14,12 @@ class CreateLanguagesTable extends Migration
     public function up()
     {
         Schema::create('languages', function (Blueprint $table) {
+            $table->string('code')->unique()->nullable();
             $table->string('key')->unique()->nullable();
             $table->string('bg_color', 7)->nullable();
             $table->string('text_color', 7)->nullable();
 
-            $table->primary('key');
+            $table->primary('code');
         });
     }
 

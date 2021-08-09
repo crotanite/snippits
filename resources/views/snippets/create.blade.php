@@ -8,7 +8,7 @@
                 <x-form.label for="language">{{ __('Language') }}</x-form.label>
                 <x-form.select name="language" @change="document.querySelector('.CodeMirror').CodeMirror.setOption('mode', $event.target.value)">
                     @foreach($languages as $lang)
-                        <option value="{{ $lang['key'] }}">{{ $lang['key'] }}</option>
+                        <option value="{{ $lang['code'] }}">{{ $lang['key'] }}</option>
                     @endforeach
                 </x-form.select>
             </div>

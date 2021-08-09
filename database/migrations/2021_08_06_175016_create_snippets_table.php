@@ -25,7 +25,7 @@ class CreateSnippetsTable extends Migration
             $table->boolean('anonymous')->default(false);
             $table->timestamps();
 
-            $table->foreign('language')->references('key')->on('languages');
+            $table->foreign('language')->references('code')->on('languages');
             $table->foreign('theme')->references('key')->on('themes');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
         });
