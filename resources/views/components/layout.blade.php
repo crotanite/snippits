@@ -8,6 +8,7 @@
         <!-- custom styles -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
         <script src="{{ mix('/js/app.js') }}"></script>
         <script src="{{ mix('/js/alpine.js') }}"></script>
         <!-- livewire -->
@@ -61,7 +62,6 @@
         </footer>
 
         @livewireScripts
-        <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
         <script>
             const textareas = document.getElementsByClassName('allow-tab');
             const count = textareas.length;

@@ -28,12 +28,30 @@
             {{ __('There are no snippets to display.') }}
         </div>
     @else
-        <div data-masonry='{ "gutter": ".gutter-sizer", "itemSelector": ".grid-item", "percentPosition": true }'>
+        <div class="masonry">
+            <div class="grid-sizer md:w-masonry"></div>
             <div class="gutter-sizer md:w-gutter"></div>
-
             @foreach($sortedSnippets as $snippet)
                 <x-snippet.item class="grid-item md:w-masonry" :readonly="false" :snippet="$snippet" />
             @endforeach
         </div>
-    @endif
+        @endif
+
+    <script>
+        const masonry = new Masonry('.masonry', {
+            columnWidth: '.grid-sizer',
+            gutter: '.gutter-sizer',
+            itemSelector: '.grid-item',
+            percentPosition: true,
+        })
+
+        window.addEventListener('refresh-masonry', function () {
+            const masonry = new Masonry('.masonry', {
+                columnWidth: '.grid-sizer',
+                gutter: '.gutter-sizer',
+                itemSelector: '.grid-item',
+                percentPosition: true,
+            })
+        })
+    </script>
 </div>

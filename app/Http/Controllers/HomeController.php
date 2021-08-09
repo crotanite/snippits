@@ -10,6 +10,6 @@ class HomeController extends Controller
     {
         $snippets = Snippet::with(['lang', 'user'])->get();
 
-        return view('home', compact('snippets'));
+        return view('snippets.index', compact('snippets'));
     }
 }

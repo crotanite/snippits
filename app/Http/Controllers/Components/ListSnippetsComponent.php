@@ -110,5 +110,7 @@ class ListSnippetsComponent extends Component
         }
 
         $this->sortedSnippets = $sort;
+
+        $this->dispatchBrowserEvent('refresh-masonry');
     }
 }

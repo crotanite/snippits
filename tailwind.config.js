@@ -22,4 +22,9 @@ module.exports = {
             }
         },
     },
+    variants: {
+        extend: {
+            float: ['even', 'odd'],
+        }
+    },
 };
