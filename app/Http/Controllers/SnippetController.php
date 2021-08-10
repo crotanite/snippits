@@ -18,7 +18,7 @@ class SnippetController extends Controller
      */
     public function index(): \Illuminate\View\View
     {
-        $snippets = auth()->user()->snippets()->with(['lang', 'user'])->get();
+        $snippets = auth()->user()->snippets()->with(['lang', 'user'])->orderBy('created_at', 'DESC')->get();
 
         return view('snippets.index', compact('snippets'));
     }

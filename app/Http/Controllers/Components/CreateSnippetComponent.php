@@ -1,12 +1,12 @@
 <?php
-namespace App\Http\Controllers\Snippets;
+namespace App\Http\Controllers\Components;
 
 use App\Models\Theme;
 use App\Models\Snippet;
 use Livewire\Component;
 use App\Models\Language;
 
-class CreateComponent extends Component
+class CreateSnippetComponent extends Component
 {
 	/**
 	 * The available languages.
@@ -31,6 +31,11 @@ class CreateComponent extends Component
         'snippet.theme' => ['required', 'exists:themes,key'],
     ];
 
+    /**
+     * Mount the component.
+     *
+     * @return void
+     */
     public function mount()
     {
         $snippet = new Snippet;
@@ -44,7 +49,12 @@ class CreateComponent extends Component
         $this->themes = Theme::all()->toArray();
     }
 
-    public function render()
+    /**
+     * Render the component.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function render(): \Illuminate\View\View
     {
         return view('snippets.create')
                 ->layout('components.layout');

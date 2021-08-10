@@ -24,7 +24,7 @@ Route::get('/logout', ['as' => 'logout', 'uses' => 'AuthController@destroy']);
 
 Route::group(['as' => 'snippets.', 'middleware' => ['auth'], 'prefix' => 'snippets'], function() {
     Route::get('/', ['as' => 'index', 'uses' => 'SnippetController@index']);
-    Route::get('/create', ['as' => 'create', 'uses' => 'Snippets\\CreateComponent']);
+    Route::get('/create', ['as' => 'create', 'uses' => 'Components\\CreateSnippetComponent']);
     Route::post('/create', ['as' => 'create', 'uses' => 'SnippetController@store']);
     Route::delete('/delete/{snippet_id}', ['as' => 'destroy', 'uses' => 'SnippetController@destroy']);
 });
