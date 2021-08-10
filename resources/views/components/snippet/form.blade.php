@@ -23,16 +23,20 @@
         <!-- direct url -->
         <div>
             <x-form.label for="url">{{ __('Direct URL') }}</x-form.label>
-            <x-form.input name="url" type="url" />
+            <x-form.input name="url" type="url" wire:model="snippet.direct_url" />
         </div>
         <!-- anonymous -->
         <div>
             <x-form.label for="anonymous">{{ __('Anonymous?') }}</x-form.label>
-            <div class="text-center"><x-form.checkbox name="anonymous" /></div>
+            <div class="text-center"><x-form.checkbox name="anonymous" wire:model="snippet.anonymous" /></div>
         </div>
     </x-slot>
     <x-slot name="footer">
         <x-gap />
-        <x-button theme="success">{{ __('Create') }}</x-button>
+        @if(request()->routeIs('snippets.create'))
+            <x-button theme="success">{{ __('Create') }}</x-button>
+        @else
+            <x-button theme="success">{{ __('Save Changes') }}</x-button>
+        @endif
     </x-slot>
 </x-snippet.item>

@@ -17,20 +17,16 @@
             <x-snippet.tags :snippet="$snippet" />
             <!-- gap -->
             <x-gap />
-            <!-- view snippet -->
-            @if(!request()->routeIs('snippets.show', ['snippet_id' => $snippet->id]))
-                <x-link href="{{ route('snippets.show', ['snippet_id' => $snippet->id]) }}">
-                    <x-heroicon-o-eye />
-                </x-link>
-            @endif
             <!-- actions -->
             @if(auth()->check() && auth()->user()->snippets->contains($snippet->id))
-                <x-link href="{{ route('snippets.edit', ['snippet_id' => $snippet->id]) }}">
-                    <x-heroicon-o-pencil />
-                </x-link>
-                <x-form.delete action="{{ route('snippets.destroy', ['snippet_id' => $snippet->id]) }}">
-                    <x-heroicon-o-trash class="text-red-500" />
-                </x-form.delete>
+                <div class="border-gray-300 border-r flex pr-2 space-x-2">
+                    <x-link href="{{ route('snippets.edit', ['snippet_id' => $snippet->id]) }}">
+                        <x-heroicon-o-pencil />
+                    </x-link>
+                    <x-form.delete action="{{ route('snippets.destroy', ['snippet_id' => $snippet->id]) }}">
+                        <x-heroicon-o-trash class="text-red-500" />
+                    </x-form.delete>
+                </div>
             @endif
             <!-- user -->
             @if(!$snippet->anonymous)
@@ -40,6 +36,12 @@
                 @if($snippet->direct_url !== null)
                     <x-link href="{{ $snippet->direct_url }}" target="_blank"><x-heroicon-o-link /></x-link>
                 @endif
+            @endif
+            <!-- view snippet -->
+            @if(!request()->routeIs('snippets.show', ['snippet_id' => $snippet->id]))
+                <x-link href="{{ route('snippets.show', ['snippet_id' => $snippet->id]) }}">
+                    <x-heroicon-o-eye />
+                </x-link>
             @endif
         @endif
     </div>
