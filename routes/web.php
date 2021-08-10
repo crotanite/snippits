@@ -28,6 +28,7 @@ Route::group(['as' => 'snippets.', 'prefix' => 'snippets'], function() {
     Route::post('/create', ['as' => 'store', 'middleware' => ['auth'], 'uses' => 'SnippetController@store']);
     Route::get('/{snippet_id}', ['as' => 'show', 'uses' => 'SnippetController@show']);
     Route::get('/{snippet_id}/approve', ['as' => 'approve', 'middleware' => ['auth'], 'uses' => 'SnippetController@approve']);
+    Route::get('/{snippet_id}/unapprove', ['as' => 'unapprove', 'middleware' => ['auth'], 'uses' => 'SnippetController@unapprove']);
     Route::get('/{snippet_id}/edit', ['as' => 'edit', 'middleware' => ['auth'], 'uses' => 'SnippetController@edit']);
     Route::patch('/{snippet_id}/edit', ['as' => 'update', 'middleware' => ['auth'], 'uses' => 'SnippetController@update']);
     Route::delete('{snippet_id}/delete', ['as' => 'destroy', 'middleware' => ['auth'], 'uses' => 'SnippetController@destroy']);

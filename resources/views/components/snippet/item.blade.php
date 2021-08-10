@@ -18,10 +18,18 @@
             <!-- gap -->
             <x-gap />
             <!-- approval message -->
-            @if(!$snippet->approved)
-                @if(auth()->check() && auth()->user()->email === config('app.initial_user.email'))
-                    <x-link href="{{ route('snippets.approve', ['snippet_id' => $snippet->id]) }}"><x-tag theme="success">Approve</x-tag></x-link>
+            @if(auth()->check() && auth()->user()->email === config('app.initial_user.email'))
+                @if(!$snippet->approved)
+                    <x-link href="{{ route('snippets.approve', ['snippet_id' => $snippet->id]) }}">
+                        <x-tag theme="success">{{ __('Approve') }}</x-tag>
+                    </x-link>
                 @else
+                    <x-link href="{{ route('snippets.unapprove', ['snippet_id' => $snippet->id]) }}">
+                        <x-tag theme="error">{{ __('Unapprove') }}</x-tag>
+                    </x-link>
+                @endif
+            @else
+                @if(!$snippet->approved)
                     <div class="border-gray-300 border-r italic pr-2 pt-1 text-xs text-gray-400">
                         {{ __('Awaiting Approval') }}
                     </div>

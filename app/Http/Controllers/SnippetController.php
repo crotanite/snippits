@@ -10,6 +10,7 @@ use App\Http\Requests\Snippets\EditRequest;
 use App\Http\Requests\Snippets\CreateRequest;
 use App\Http\Requests\Snippets\DeleteRequest;
 use App\Http\Requests\Snippets\ApproveRequest;
+use App\Http\Requests\Snippets\UnapproveRequest;
 
 class SnippetController extends Controller
 {
@@ -90,6 +91,22 @@ class SnippetController extends Controller
         $snippet->save();
 
         return redirect()->back()->with('success', ['Successfully approved a snippet.']);
+    }
+
+    /**
+     * Show the edit view.
+     *
+     * @param int $snippet_id
+     * @param \App\Http\Requests\Snippets\UnapproveRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function unapprove(int $snippet_id, UnapproveRequest $request): \Illuminate\Http\RedirectResponse
+    {
+        $snippet = Snippet::where('id', '=', $snippet_id)->firstOrFail();
+        $snippet->approved = false;
+        $snippet->save();
+
+        return redirect()->back()->with('success', ['Successfully unapproved a snippet.']);
     }
 
     /**

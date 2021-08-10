@@ -8,10 +8,10 @@ class HomeController extends Controller
 {
     public function __invoke()
     {
-        $approved = !auth()->check() || (auth()->check() && auth()->user()->email !== config('app.initial_user.email'));
-
         $snippets = Snippet::with(['lang', 'user'])
-                ->where('approved', '=', $approved)
+                ->when(!auth()->check() || (auth()->check() && auth()->user()->email !== config('app.initial_user.email')), function($q) {
+                    $q->where('approved', '=', true);
+                })
                 ->orderBy('created_at', 'DESC')
                 ->get();
 
