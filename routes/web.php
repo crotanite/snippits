@@ -22,11 +22,14 @@ Route::get('/login', ['as' => 'login', 'uses' => 'AuthController@edit']);
 Route::post('/login', ['as' => 'login', 'uses' => 'AuthController@update']);
 Route::get('/logout', ['as' => 'logout', 'uses' => 'AuthController@destroy']);
 
-Route::group(['as' => 'snippets.', 'middleware' => ['auth'], 'prefix' => 'snippets'], function() {
-    Route::get('/', ['as' => 'index', 'uses' => 'SnippetController@index']);
-    Route::get('/create', ['as' => 'create', 'uses' => 'Components\\CreateSnippetComponent']);
-    Route::post('/create', ['as' => 'create', 'uses' => 'SnippetController@store']);
-    Route::delete('/delete/{snippet_id}', ['as' => 'destroy', 'uses' => 'SnippetController@destroy']);
+Route::group(['as' => 'snippets.', 'prefix' => 'snippets'], function() {
+    Route::get('/', ['as' => 'index', 'middleware' => ['auth'], 'uses' => 'SnippetController@index']);
+    Route::get('/create', ['as' => 'create', 'middleware' => ['auth'], 'uses' => 'SnippetController@create']);
+    Route::post('/create', ['as' => 'store', 'middleware' => ['auth'], 'uses' => 'SnippetController@store']);
+    Route::get('/{snippet_id}', ['as' => 'show', 'uses' => 'SnippetController@show']);
+    Route::get('/{snippet_id}/edit', ['as' => 'edit', 'middleware' => ['auth'], 'uses' => 'SnippetController@edit']);
+    Route::patch('/{snippet_id}/edit', ['as' => 'update', 'middleware' => ['auth'], 'uses' => 'SnippetController@update']);
+    Route::delete('{snippet_id}/delete', ['as' => 'destroy', 'middleware' => ['auth'], 'uses' => 'SnippetController@destroy']);
 });
 
 Route::group(['as' => 'invites.', 'prefix' => 'invites'], function() {

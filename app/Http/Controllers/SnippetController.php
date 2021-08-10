@@ -30,10 +30,13 @@ class SnippetController extends Controller
      */
     public function create(): \Illuminate\View\View
     {
-        $languages = Language::all();
-        $tags = Tag::all();
+        $snippet = new Snippet;
+        $snippet->id = 0;
+        $snippet->snippet = '// start coding';
+        $snippet->language = Language::first()->key;
+        $snippet->theme = Theme::first()->key;
 
-        return view('snippets.create', compact('languages', 'tags'));
+        return view('snippets.create', compact('snippet'));
     }
 
     /**
@@ -56,6 +59,32 @@ class SnippetController extends Controller
         ]);
 
         return redirect()->route('snippets.index');
+    }
+
+    /**
+     * Show the show view.
+     *
+     * @param int $snippet_id
+     * @return \Illuminate\View\View
+     */
+    public function show(int $snippet_id): \Illuminate\View\View
+    {
+        $snippet = Snippet::where('id', '=', $snippet_id)->firstOrFail();
+
+        return view('snippets.show', compact('snippet'));
+    }
+
+    /**
+     * Show the edit view.
+     *
+     * @param int $snippet_id
+     * @return \Illuminate\View\View
+     */
+    public function edit(int $snippet_id): \Illuminate\View\View
+    {
+        $snippet = Snippet::where('id', '=', $snippet_id)->firstOrFail();
+
+        return view('snippets.edit', compact('snippet'));
     }
 
     /**

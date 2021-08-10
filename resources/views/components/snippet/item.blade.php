@@ -13,18 +13,33 @@
         @if($footer ?? null)
             {{ $footer }}
         @else
+            <!-- language and tags -->
             <x-snippet.tags :snippet="$snippet" />
             <!-- gap -->
             <x-gap />
-            @if($snippet->anonymous)
-                <x-heroicon-o-user-circle class="cursor-not-allowed text-gray-500" />
-            @else
+            <!-- view snippet -->
+            @if(!request()->routeIs('snippets.show', ['snippet_id' => $snippet->id]))
+                <x-link href="{{ route('snippets.show', ['snippet_id' => $snippet->id]) }}">
+                    <x-heroicon-o-eye />
+                </x-link>
+            @endif
+            <!-- actions -->
+            @if(auth()->check() && auth()->user()->snippets->contains($snippet->id))
+                <x-link href="{{ route('snippets.edit', ['snippet_id' => $snippet->id]) }}">
+                    <x-heroicon-o-pencil />
+                </x-link>
+                <x-form.delete action="{{ route('snippets.destroy', ['snippet_id' => $snippet->id]) }}">
+                    <x-heroicon-o-trash class="text-red-500" />
+                </x-form.delete>
+            @endif
+            <!-- user -->
+            @if(!$snippet->anonymous)
                 @if($snippet->user && $snippet->user->url !== null)
                     <x-link href="{{ $snippet->user->url }}" target="_blank"><x-heroicon-o-user-circle /></x-link>
                 @endif
-            @endif
-            @if($snippet->direct_url !== null)
-                <x-link href="{{ $snippet->direct_url }}" target="_blank"><x-heroicon-o-link /></x-link>
+                @if($snippet->direct_url !== null)
+                    <x-link href="{{ $snippet->direct_url }}" target="_blank"><x-heroicon-o-link /></x-link>
+                @endif
             @endif
         @endif
     </div>

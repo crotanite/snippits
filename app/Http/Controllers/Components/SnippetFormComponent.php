@@ -6,7 +6,7 @@ use App\Models\Snippet;
 use Livewire\Component;
 use App\Models\Language;
 
-class CreateSnippetComponent extends Component
+class SnippetFormComponent extends Component
 {
 	/**
 	 * The available languages.
@@ -34,16 +34,11 @@ class CreateSnippetComponent extends Component
     /**
      * Mount the component.
      *
+     * @param \App\Models\Snippet $snippet
      * @return void
      */
-    public function mount()
+    public function mount(Snippet $snippet)
     {
-        $snippet = new Snippet;
-        $snippet->id = 0;
-        $snippet->snippet = '// start coding';
-        $snippet->language = Language::first()->key;
-        $snippet->theme = Theme::first()->key;
-
         $this->languages = Language::all()->toArray();
         $this->snippet = $snippet;
         $this->themes = Theme::all()->toArray();
@@ -56,7 +51,6 @@ class CreateSnippetComponent extends Component
      */
     public function render(): \Illuminate\View\View
     {
-        return view('snippets.create')
-                ->layout('components.layout');
+        return view('components.snippet.form');
     }
 }
