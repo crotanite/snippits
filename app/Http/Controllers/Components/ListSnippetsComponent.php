@@ -33,6 +33,12 @@ class ListSnippetsComponent extends Component
 	 */
     public Collection $sortedSnippets;
 
+	/**
+	 * The tags to search for.
+	 * @var array
+	 */
+    public string $tags;
+
     /**
      * The select theme to sort by.
      * @var string
@@ -56,6 +62,7 @@ class ListSnippetsComponent extends Component
         $this->language = '';
         $this->languages = Language::all()->toArray();
         $this->snippets = $snippets;
+        $this->tags = '';
         $this->theme = '';
         $this->themes = Theme::all()->toArray();
 
@@ -83,6 +90,16 @@ class ListSnippetsComponent extends Component
     }
 
     /**
+     * Do something on updated "tags".
+     *
+     * @return void
+     */
+    public function updatedTags(): void
+    {
+        $this->sortSnippets();
+    }
+
+    /**
      * Do something on updated "theme".
      *
      * @return void
@@ -103,6 +120,24 @@ class ListSnippetsComponent extends Component
 
         if($this->language !== '') {
             $sort = $sort->where('language', '=', $this->language);
+        }
+
+        if($this->tags !== '') {
+            $tags = explode(',', $this->tags);
+            $sort = $sort->filter(function($item) use($tags) {
+                $state = false;
+                foreach($tags as $tag) {
+                    if($state === true) {
+                        break;
+                    }
+
+                    if(in_array($tag, $item->tags ?? [])) {
+                        $state = true;
+                        break;
+                    }
+                }
+                return $state;
+            });
         }
 
         if($this->theme !== '') {

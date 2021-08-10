@@ -21,6 +21,11 @@
             </x-form.select>
         </div>
         <x-gap />
+        <!-- tag -->
+        <div>
+            <x-form.label for="tags">{{ __('Tags') }}</x-form.label>
+            <x-form.input name="tags" placeholder="e.g. laravel, array" wire:model.lazy="tags" />
+        </div>
     </div>
 
     @if($sortedSnippets->count() === 0)
@@ -35,10 +40,10 @@
                 <x-snippet.item class="grid-item md:w-masonry" :readonly="false" :snippet="$snippet" />
             @endforeach
         </div>
-        @endif
+    @endif
 
     <script>
-        const masonry = new Masonry('.masonry', {
+        new Masonry('.masonry', {
             columnWidth: '.grid-sizer',
             gutter: '.gutter-sizer',
             itemSelector: '.grid-item',
@@ -46,7 +51,7 @@
         })
 
         window.addEventListener('refresh-masonry', function () {
-            const masonry = new Masonry('.masonry', {
+            new Masonry('.masonry', {
                 columnWidth: '.grid-sizer',
                 gutter: '.gutter-sizer',
                 itemSelector: '.grid-item',
