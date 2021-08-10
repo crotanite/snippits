@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Snippets;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateSnippetRequest extends FormRequest
+class EditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,11 @@ class CreateSnippetRequest extends FormRequest
     public function rules()
     {
         return [
+            'anonymous' => ['in:on,off'],
+            'direct_url' => ['url', 'nullable'],
+            'language' => ['required', 'exists:languages,code'],
             'snippet' => ['required'],
             'theme' => ['required', 'exists:themes,key'],
-            'language' => ['required', 'exists:languages,code'],
         ];
     }
 }

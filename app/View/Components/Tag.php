@@ -2,18 +2,21 @@
 
 namespace App\View\Components;
 
+use App\View\Traits\Theme;
 use Illuminate\View\Component;
 
 class Tag extends Component
 {
+    use Theme;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(string $theme = 'info')
     {
-        //
+        $this->theme = $theme;
     }
 
     /**

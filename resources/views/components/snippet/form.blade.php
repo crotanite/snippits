@@ -22,8 +22,8 @@
         <x-gap />
         <!-- direct url -->
         <div>
-            <x-form.label for="url">{{ __('Direct URL') }}</x-form.label>
-            <x-form.input name="url" type="url" wire:model="snippet.direct_url" />
+            <x-form.label for="direct_url">{{ __('Direct URL') }}</x-form.label>
+            <x-form.input name="direct_url" type="url" wire:model="snippet.direct_url" />
         </div>
         <!-- anonymous -->
         <div>
