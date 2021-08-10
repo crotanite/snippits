@@ -72,6 +72,7 @@
         highlightMatches: true,
         indentWithTabs: true,
         lineNumbers: false,
+        lineWrapping: true,
         matchBrackets: true,
         readOnly: "{{ $readonly }}",
         styleActiveLine: true,
