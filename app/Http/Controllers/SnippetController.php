@@ -142,6 +142,7 @@ class SnippetController extends Controller
         $snippet->snippet = $request->input('snippet');
         $snippet->language = $request->input('language');
         $snippet->theme = $request->input('theme');
+        $snippet->tags = explode(',', $request->input('tags'));
         $snippet->direct_url = $request->input('direct_url');
         $snippet->anonymous = $request->input('anonymous') === 'on' ? true : false;
         $snippet->save();
