@@ -20,20 +20,52 @@ class Snippet extends Model
         'tags' => 'array',
     ];
 
-    public function lang()
+    /**
+     * Fetch the language this snippet uses.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function lang(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Language::class, 'language', 'code');
     }
 
-    public function getTaggingAttribute()
+    /**
+     * List the tags of this snippet as an array
+     * seperated string.
+     *
+     * @return string
+     */
+    public function listTags(): string
+    {
+        return implode(',', $this->tags ?? []);
+    }
+
+    /**
+     * Fetch all of the tags this snippet has.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public function getTaggingAttribute(): \Illuminate\Support\Collection
     {
         return collect($this->tags)->map(function($tag) {
-            return Tag::where('tag', '=', $tag)->first();
+            if($tagModel = Tag::where('tag', '=', $tag)->first()) {
+                return $tagModel;
+            }
+
+            $tagModel = new Tag;
+            $tagModel->tag = $tag;
+            $tagModel->bg_color = '#aaaaaa';
+            $tagModel->text_color = '#ffffff';
+
+            return $tagModel;
         });
     }
 
     /**
-     * Fetch the user who wrote this snippet.
+     * Fetch the user this snippet belongs to.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user()
     {

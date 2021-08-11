@@ -9,7 +9,7 @@
     <textarea id="snippet-{{ $snippet->id }}" name="snippet">{!! $snippet->snippet !!}</textarea>
 
     <!-- footer -->
-    <div class="bg-white flex items-stretch p-4 space-x-2 text-sm">
+    <div class="bg-white flex items-end p-4 space-x-2 text-sm">
         @if($footer ?? null)
             {{ $footer }}
         @else
